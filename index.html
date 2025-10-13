@@ -143,7 +143,7 @@
             justify-content: space-between;
             gap: 18px;
             align-items: center;
-            margin-bottom: 18px;
+            margin-bottom: 24px;
         }
 
         .summary {
@@ -161,6 +161,38 @@
                 color: #04305a;
                 opacity: 0.9;
             }
+        
+        /* TABS */
+        .tabs {
+            display: flex;
+            gap: 8px;
+            border-bottom: 1px solid #e0eaf6;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+        .tab-button {
+            padding: 10px 16px;
+            border: none;
+            background: transparent;
+            cursor: pointer;
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--navy-2);
+            opacity: 0.7;
+            border-bottom: 3px solid transparent;
+            transition: all .2s ease;
+        }
+        .tab-button.active {
+            opacity: 1;
+            color: var(--navy-1);
+            border-bottom-color: var(--accent-1);
+        }
+        .tab-pane {
+            display: none;
+        }
+        .tab-pane.active {
+            display: block;
+        }
 
         /* timeline & cards */
         .section {
@@ -299,6 +331,7 @@
             border: 1px solid #ddeaf8;
             outline: none;
             font-size: 14px;
+            background-color: #f7faff;
         }
 
         textarea {
@@ -314,18 +347,27 @@
             border: none;
             font-weight: 700;
             cursor: pointer;
-            transition: transform .16s;
+            transition: transform .16s, box-shadow .16s;
+        }
+        .submit:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 80, 157, 0.2);
         }
 
-            .submit:hover {
-                transform: translateY(-3px);
-            }
+        .page-footer {
+            grid-column: 1 / -1;
+            margin-top: 10px;
+            text-align: center;
+            color: #5b7a98;
+            font-size: 13px;
+        }
 
         /* responsive */
         @media (max-width:980px) {
+            body { padding: 16px; }
             .wrap {
                 grid-template-columns: 1fr;
-                padding: 12px;
+                gap: 20px;
             }
 
             .sidebar {
@@ -339,11 +381,16 @@
                 align-items: flex-start;
                 gap: 12px;
             }
-
+        }
+        @media (max-width: 600px) {
             .form-grid {
                 grid-template-columns: 1fr;
             }
+             .skills-grid {
+                grid-template-columns: 1fr;
+            }
         }
+
 
         /* small helpers */
         .muted-sm {
@@ -357,12 +404,23 @@
             font-weight: 700;
         }
 
+        .fade-in {
+            opacity: 0;
+            transform: translateY(10px);
+            animation: fadeIn .5s forwards;
+        }
         .fade-up {
             opacity: 0;
             transform: translateY(8px);
             animation: fadeUp .7s forwards;
         }
 
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: none
+            }
+        }
         @keyframes fadeUp {
             to {
                 opacity: 1;
@@ -382,26 +440,26 @@
         <aside class="sidebar fade-up" style="animation-delay:.05s">
             <div class="name">OBADA SALMAN</div>
             <div class="role">Mechatronics Engineer</div>
-            <div class="meta">Nablus, Palestine </div>
+            <div class="meta">Nablus, Palestine</div>
 
             <div class="cta-row">
                 <a class="btn" id="downloadBtn" href="Obada_Salman_CV_2025.pdf" download="Obada_Salman_CV_2025.pdf">Download CV</a>
-                <a class="btn" style="background:transparent;border:1px solid rgba(255,255,255,0.12);color:white;text-decoration:none" href="#contact">Contact</a>
+                <a class="btn" style="background:transparent;border:1px solid rgba(255,255,255,0.12);color:white;text-decoration:none" href="#contact" onclick="showContactTab(event)">Contact</a>
             </div>
 
             <div class="contact-list">
                 <a href="https://wa.me/970599999404" target="_blank" rel="noopener">WhatsApp • +970 59 999 9404</a>
-                <a href="mailto:ObadaSalman2@gmail.com">Email • ObadaSalman2@gmail.com</a>
+                
                 <a href="https://linkedin.com/in/obadasalman" target="_blank" rel="noopener">LinkedIn • obadasalman</a>
             </div>
 
-            <div class="muted" style="margin-top:14px;">Quick facts</div>
-            <div class="muted-sm">B.Sc. Mechatronics Engineering — PTUK (Average 89.2)</div>
+            <div class="muted" style="margin-top:14px;">Quick Advice</div>
+            <div class="muted-sm">Be yourself</div>
             <div style="margin-top:10px;">
                 <div class="chips">
-                    <div class="chip">SolidWorks</div>
-                    <div class="chip">CNC</div>
-                    <div class="chip">Maintenance</div>
+                    <div class="chip">Open to work</div>
+                    <div class="chip">PTUK</div>
+                    <div class="chip">Mechatronics</div>
                 </div>
             </div>
         </aside>
@@ -425,241 +483,281 @@
                 </div>
             </div>
 
-            <!-- Education -->
-            <section class="section">
-                <h3>Education</h3>
-                <div class="card timeline">
-                    <div class="timeline-item">
-                        <div class="timeline-dot"></div>
-                        <div class="job-title">B.Sc. Mechatronics Engineering — Palestine Technical University (PTUK)</div>
-                        <div class="job-meta">2018 – 2023 • Average: 89.2</div>
-                        <div class="muted-sm">Tulkarm — Core studies in automation, control, mechanical & electrical systems.</div>
-                    </div>
+            <!-- Tab Navigation -->
+            <div class="tabs">
+                <button class="tab-button active" data-tab="overview">Overview</button>
+                <button class="tab-button" data-tab="experience">Experience</button>
+                <button class="tab-button" data-tab="skills">Skills</button>
+                <button class="tab-button" data-tab="contact">Contact</button>
+            </div>
 
-                    <div class="timeline-item">
-                        <div class="timeline-dot" style="background:var(--accent-2)"></div>
-                        <div class="job-title">Diploma — Qadri Tuqan (Scientific stream)</div>
-                        <div class="job-meta">2017 – 2018 • Average: 93.7</div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Work experience -->
-            <section class="section">
-                <h3>Work experience</h3>
-
-                <div class="card timeline">
-                    <div class="timeline-item">
-                        <div class="timeline-dot"></div>
-                        <div class="job-title">Maintenance & Production Engineer — Sama Pharmaceutical Manufacturing Co.</div>
-                        <div class="job-meta">Aug 2023 – Mar 2025 • Nablus</div>
-                        <div>
-                            <strong>Highlights:</strong>
-                            <ul>
-                                <li>Preventive maintenance and machine setups for production lines.</li>
-                                <li>Installation of a new machine at Plant A and production documentation.</li>
-                                <li>Production monitoring to ensure output and quality.</li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="timeline-item">
-                        <div class="timeline-dot" style="background:var(--accent-2)"></div>
-                        <div class="job-title">CNC Operator & Mechanical/Electrical Assembler — National Manufacturing Co.</div>
-                        <div class="job-meta">May – Sep 2025 • Nablus</div>
-                        <div>
-                            <strong>Highlights:</strong>
-                            <ul>
-                                <li>CNC operation and part machining.</li>
-                                <li>Mechanical and electrical assembly of machines.</li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="timeline-item">
-                        <div class="timeline-dot" style="background:var(--navy-1)"></div>
-                        <div class="job-title">Maintenance Engineer (Training) — Al Arz Factory</div>
-                        <div class="job-meta">Jan – Mar 2023 • Nablus</div>
-                        <div class="muted-sm">Monitoring cooling systems, softener, and steam boiler.</div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Skills -->
-            <section class="section">
-                <h3>Skills</h3>
-                <div class="card" style="display:flex; gap:16px; flex-wrap:wrap; align-items:flex-start;">
-                    <div style="flex:1; min-width:240px;">
-                        <div class="skills-grid">
-                            <div class="skill">
-                                <div style="font-weight:700">SolidWorks</div>
-                                <div class="bar"><div class="bar-inner" data-val="70"></div></div>
+            <!-- Tab Content -->
+            <div class="tab-content">
+                <!-- Overview Tab -->
+                <div id="overview" class="tab-pane active fade-in">
+                    <!-- Education -->
+                    <section class="section" style="margin-top:0;">
+                        <h3>Education</h3>
+                        <div class="card timeline">
+                            <div class="timeline-item">
+                                <div class="timeline-dot"></div>
+                                <div class="job-title">B.Sc. Mechatronics Engineering — Palestine Technical University (PTUK)</div>
+                                <div class="job-meta">2018 – 2023 • Average: 89.2</div>
+                                <div class="muted-sm">Tulkarm — Core studies in automation, control, mechanical & electrical systems.</div>
                             </div>
-                            <div class="skill">
-                                <div style="font-weight:700">CNC & Machining</div>
-                                <div class="bar"><div class="bar-inner" data-val="70"></div></div>
-                            </div>
-                            <div class="skill">
-                                <div style="font-weight:700">Maintenance & Troubleshooting</div>
-                                <div class="bar"><div class="bar-inner" data-val="90"></div></div>
-                            </div>
-                            <div class="skill">
-                                <div style="font-weight:700">Microsoft Office / Technical Writing</div>
-                                <div class="bar"><div class="bar-inner" data-val="90"></div></div>
+                            <div class="timeline-item">
+                                <div class="timeline-dot" style="background:var(--accent-2)"></div>
+                                <div class="job-title">Diploma — Qadri Tuqan (Scientific stream)</div>
+                                <div class="job-meta">2017 – 2018 • Average: 93.7</div>
                             </div>
                         </div>
-                    </div>
-
-                    <div style="width:260px;">
-                        <canvas id="skillChart" height="220"></canvas>
-                    </div>
+                    </section>
                 </div>
-            </section>
 
-            <!-- Training & Certifications -->
-            <section class="section">
-                <h3>Training & certifications</h3>
-                <div class="card">
-                    <div style="display:flex;flex-direction:column;gap:8px">
-                        <div><strong>Prompt Engineering</strong> — Apr 2025 (10 hours) — Al-Najah Innovation Park.</div>
-                        <div><strong>Occupational Health & Safety</strong> — Apr 2025 (30 hours) — Palestine Engineers Association.</div>
-                        <div><strong>Al Arz Factory</strong> — Jan–Mar 2023 — Maintenance Engineer (training).</div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Contact -->
-            <section id="contact" class="section">
-                <h3>Contact</h3>
-                <div class="card">
-                    <div style="display:flex;gap:18px;flex-wrap:wrap;">
-                        <div style="flex:1;min-width:260px">
-                            <div style="font-weight:700;margin-bottom:8px">Reach out</div>
-                            <div class="muted-sm">WhatsApp: <a class="link" href="https://wa.me/970599999404" target="_blank">+970 59 999 9404</a></div>
-                            <div class="muted-sm">LinkedIn: <a class="link" href="https://linkedin.com/in/obadasalman" target="_blank">obadasalman</a></div>
-                            <div style="margin-top:10px" class="muted-sm">Email: <a class="link" href="mailto:ObadaSalman2@gmail.com">ObadaSalman2@gmail.com</a></div>
+                <!-- Experience Tab -->
+                <div id="experience" class="tab-pane fade-in">
+                    <!-- Work experience -->
+                    <section class="section" style="margin-top:0;">
+                        <h3>Work experience</h3>
+                        <div class="card timeline">
+                            <div class="timeline-item">
+                                <div class="timeline-dot"></div>
+                                <div class="job-title">Maintenance & Production Engineer — Sama Pharmaceutical Manufacturing Co.</div>
+                                <div class="job-meta">Aug 2023 – Mar 2025 • Nablus</div>
+                                <div>
+                                    <strong>Highlights:</strong>
+                                    <ul style="padding-left: 20px; margin-top: 5px;">
+                                        <li>Preventive maintenance and machine setups for production lines.</li>
+                                        <li>Installation of a new machine at Plant A and production documentation.</li>
+                                        <li>Production monitoring to ensure output and quality.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-dot" style="background:var(--accent-2)"></div>
+                                <div class="job-title">CNC Operator & Mechanical/Electrical Assembler — National Manufacturing Co.</div>
+                                <div class="job-meta">May – Sep 2025 • Nablus</div>
+                                <div>
+                                    <strong>Highlights:</strong>
+                                    <ul style="padding-left: 20px; margin-top: 5px;">
+                                        <li>CNC operation and part machining.</li>
+                                        <li>Mechanical and electrical assembly of machines.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-dot" style="background:var(--navy-1)"></div>
+                                <div class="job-title">Maintenance Engineer (Training) — Al Arz Factory</div>
+                                <div class="job-meta">Jan – Mar 2023 • Nablus</div>
+                                <div class="muted-sm">Monitoring cooling systems, softener, and steam boiler.</div>
+                            </div>
                         </div>
+                    </section>
+                     <!-- Training & Certifications -->
+                    <section class="section">
+                        <h3>Training & certifications</h3>
+                        <div class="card">
+                            <div style="display:flex;flex-direction:column;gap:8px">
+                                <div><strong>Prompt Engineering</strong> — Apr 2025 (10 hours) — Al-Najah Innovation Park.</div>
+                                <div><strong>Occupational Health & Safety</strong> — Apr 2025 (30 hours) — Palestine Engineers Association.</div>
+                                <div><strong>Al Arz Factory</strong> — Jan–Mar 2023 — Maintenance Engineer (training).</div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
 
-                        <div style="flex:1;min-width:300px">
-                            <form id="contactForm">
-                                <div class="form-grid">
-                                    <div class="form-row">
-                                        <label class="muted-sm">Full name</label>
-                                        <input type="text" name="user_name" required />
+                <!-- Skills Tab -->
+                <div id="skills" class="tab-pane fade-in">
+                     <!-- Skills -->
+                    <section class="section" style="margin-top:0;">
+                        <h3>Skills Analysis</h3>
+                        <div class="card" style="display:flex; gap:16px; flex-wrap:wrap; align-items:flex-start;">
+                            <div style="flex:1; min-width:240px;">
+                                <div class="skills-grid">
+                                    <div class="skill">
+                                        <div style="font-weight:700">SolidWorks</div>
+                                        <div class="bar"><div class="bar-inner" data-val="85"></div></div>
                                     </div>
-                                    <div class="form-row">
-                                        <label class="muted-sm">Email</label>
-                                        <input type="email" name="user_email" required />
+                                    <div class="skill">
+                                        <div style="font-weight:700">CNC & Machining</div>
+                                        <div class="bar"><div class="bar-inner" data-val="78"></div></div>
+                                    </div>
+                                    <div class="skill">
+                                        <div style="font-weight:700">Maintenance & Troubleshooting</div>
+                                        <div class="bar"><div class="bar-inner" data-val="88"></div></div>
+                                    </div>
+                                    <div class="skill">
+                                        <div style="font-weight:700">Microsoft Office / Technical Writing</div>
+                                        <div class="bar"><div class="bar-inner" data-val="82"></div></div>
                                     </div>
                                 </div>
-
-                                <div style="margin-top:10px" class="form-row">
-                                    <label class="muted-sm">Message</label>
-                                    <textarea name="message" required></textarea>
-                                </div>
-
-                                <div style="display:flex;gap:8px; margin-top:10px;">
-                                    <button type="submit" class="submit">Send message</button>
-                                    <div id="formStatus" style="align-self:center;color:#045875;font-weight:700"></div>
-                                </div>
-                            </form>
-                            <div class="muted-sm" style="margin-top:10px">Form powered by EmailJS.</div>
+                            </div>
+                            <div style="flex: 1; min-width:260px; height: 220px;">
+                                <canvas id="skillChart"></canvas>
+                            </div>
                         </div>
-                    </div>
+                    </section>
                 </div>
-            </section>
 
-            <footer style="margin-top:18px; text-align:center; color:#567; font-size:13px;">
-                © Obada Salman
-            </footer>
+                <!-- Contact Tab -->
+                <div id="contact" class="tab-pane fade-in">
+                    <!-- Contact -->
+                    <section class="section" style="margin-top:0;">
+                        <h3>Contact Me</h3>
+                        <div class="card">
+                            <div style="display:flex;gap:18px;flex-wrap:wrap;">
+                                <div style="flex:1;min-width:260px">
+                                    <div style="font-weight:700;margin-bottom:8px">Get in touch</div>
+                                    <div class="muted-sm">WhatsApp: <a class="link" href="https://wa.me/970599999404" target="_blank">+970 59 999 9404</a></div>
+                                    <div class="muted-sm">LinkedIn: <a class="link" href="https://linkedin.com/in/obadasalman" target="_blank">obadasalman</a></div>
+                                    
+                                </div>
 
+                                <div style="flex:1;min-width:300px">
+                                    <form id="contactForm">
+                                        <div class="form-grid">
+                                            <div class="form-row">
+                                                <label class="muted-sm">Full name</label>
+                                                <input type="text" name="user_name" required />
+                                            </div>
+                                            <div class="form-row">
+                                                <label class="muted-sm">Email</label>
+                                                <input type="email" name="user_email" required />
+                                            </div>
+                                        </div>
+
+                                        <div style="margin-top:10px" class="form-row">
+                                            <label class="muted-sm">Message</label>
+                                            <textarea name="message" required></textarea>
+                                        </div>
+
+                                        <div style="display:flex;gap:8px; margin-top:10px;">
+                                            <button type="submit" class="submit">Send message</button>
+                                            <div id="formStatus" style="align-self:center;color:#045875;font-weight:700"></div>
+                                        </div>
+                                    </form>
+                                    <div class="muted-sm" style="margin-top:10px">Form powered by EmailJS .</div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
         </main>
+        <footer class="page-footer">
+             © Obada Salman
+        </footer>
     </div>
 
     <script>
-    // Init EmailJS - replace with your user ID
-    (function(){
-      // NOTE: Replace 'YOUR_EMAILJS_USER_ID' with your EmailJS user id.
-      // You will also set the service ID and template ID when sending.
-      emailjs.init('rffPoG4I4xtBGcpOk');
-    })();
+    document.addEventListener('DOMContentLoaded', function() {
+        // Init EmailJS - replace with your user ID
+        (function(){
+          // NOTE: Replace with your actual EmailJS user ID.
+          emailjs.init('rffPoG4I4xtBGcpOk');
+        })();
 
-    // Animate skill bars when visible
-    function animateBars(){
-      document.querySelectorAll('.bar-inner').forEach(b=>{
-        const val = b.getAttribute('data-val') || 60;
-        setTimeout(()=> b.style.width = val + '%', 120);
-      });
-    }
+        const tabs = document.querySelectorAll('.tab-button');
+        const panes = document.querySelectorAll('.tab-pane');
+        
+        let skillChart;
+        let chartRendered = false;
 
-    // IntersectionObserver to trigger animations once in view
-    const obs = new IntersectionObserver((entries)=>{
-      entries.forEach(ent=>{
-        if(ent.isIntersecting){
-          animateBars();
-          obs.disconnect();
+        function switchTab(tabEl) {
+            const targetId = tabEl.dataset.tab;
+
+            tabs.forEach(t => t.classList.remove('active'));
+            tabEl.classList.add('active');
+
+            panes.forEach(p => p.classList.remove('active'));
+            const targetPane = document.getElementById(targetId);
+            if(targetPane) {
+                targetPane.classList.add('active');
+            }
+            
+            // Animate skill bars if the skills tab is active
+            if (targetId === 'skills') {
+                animateBars();
+                renderChart();
+            }
         }
-      })
-    },{threshold:.15});
-    obs.observe(document.querySelector('.skills-grid'));
 
-    // Setup Chart.js radar/bar for skills
-    const ctx = document.getElementById('skillChart').getContext('2d');
-    const skillChart = new Chart(ctx, {
-      type: 'bar',
-      data: {
-        labels: ['SolidWorks','CNC','Maintenance','Office Skills'],
-        datasets: [{
-          label: 'Skill level',
-          data: [85,78,88,82],
-          borderRadius:6,
-          barThickness:18
-        }]
-      },
-      options: {
-        responsive:true,
-        maintainAspectRatio:false,
-        scales:{
-          y:{ beginAtZero:true, max:100, ticks:{stepSize:20} }
-        },
-        plugins:{ legend:{ display:false } }
-      }
-    });
-
-    // Contact form handling (EmailJS)
-    document.getElementById('contactForm').addEventListener('submit', function(e){
-      e.preventDefault();
-      const statusEl = document.getElementById('formStatus');
-      statusEl.textContent = 'Sending...';
-
-      // Replace with your EmailJS service ID & template ID
-        const serviceID = 'service_dl1up6s';
-        const templateID = 'template_xafoadf';
-
-      // EmailJS uses element id or object mapping
-      emailjs.sendForm(serviceID, templateID, this)
-        .then(() => {
-          statusEl.textContent = 'Sent ✓';
-          this.reset();
-          setTimeout(()=> statusEl.textContent = '', 3000);
-        }, (err) => {
-          console.error(err);
-          statusEl.textContent = 'Error — check settings';
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => switchTab(tab));
         });
-    });
+        
+        // Function to handle the contact button click from sidebar
+        window.showContactTab = function(event) {
+            event.preventDefault();
+            const contactTabButton = document.querySelector('.tab-button[data-tab="contact"]');
+            if (contactTabButton) {
+                switchTab(contactTabButton);
+                // Scroll to the main content area for better visibility on mobile
+                document.querySelector('.main').scrollIntoView({ behavior: 'smooth' });
+            }
+        };
 
-    // Small accessibility: allow download via button confirmed
-    document.getElementById('downloadBtn').addEventListener('click', function(){
-      // no-op — normal anchor works. Provided to allow analytics later.
-    });
+        // Animate skill bars when visible
+        function animateBars(){
+          document.querySelectorAll('.bar-inner').forEach(b=>{
+            const val = b.getAttribute('data-val') || 0;
+            setTimeout(()=> b.style.width = val + '%', 100);
+          });
+        }
+        
+        // Setup Chart.js radar/bar for skills
+        function renderChart() {
+            if(chartRendered) return;
 
-    // micro hover effects for timeline
-    document.querySelectorAll('.timeline-item').forEach(item=>{
-      item.addEventListener('mouseenter', ()=> item.style.transform='translateY(-3px)');
-      item.addEventListener('mouseleave', ()=> item.style.transform='none');
+            const ctx = document.getElementById('skillChart').getContext('2d');
+            skillChart = new Chart(ctx, {
+              type: 'bar',
+              data: {
+                labels: ['SolidWorks','CNC','Maintenance','Office Skills'],
+                datasets: [{
+                  label: 'Skill level',
+                  data: [85,78,88,82],
+                  backgroundColor: 'rgba(0, 80, 157, 0.7)',
+                  borderColor: 'rgba(0, 80, 157, 1)',
+                  borderWidth: 1,
+                  borderRadius: 6,
+                  barThickness: 18
+                }]
+              },
+              options: {
+                responsive:true,
+                maintainAspectRatio:false,
+                scales:{
+                  y:{ beginAtZero:true, max:100, ticks:{stepSize:20} }
+                },
+                plugins:{ legend:{ display:false } }
+              }
+            });
+            chartRendered = true;
+        }
+
+        // Contact form handling (EmailJS)
+        document.getElementById('contactForm').addEventListener('submit', function(e){
+          e.preventDefault();
+          const statusEl = document.getElementById('formStatus');
+          statusEl.textContent = 'Sending...';
+
+          // Replace with your EmailJS service ID & template ID
+          const serviceID = 'service_dl1up6s';
+          const templateID = 'template_xafoadf';
+
+          emailjs.sendForm(serviceID, templateID, this)
+            .then(() => {
+              statusEl.textContent = 'Sent ✓';
+              this.reset();
+              setTimeout(()=> statusEl.textContent = '', 3000);
+            }, (err) => {
+              console.error(err);
+              statusEl.textContent = 'Error — check console';
+            });
+        });
     });
     </script>
 </body>
 </html>
-
 
