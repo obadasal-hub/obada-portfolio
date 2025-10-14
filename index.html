@@ -160,8 +160,9 @@
                 margin: 8px 0 0 0;
                 color: #04305a;
                 opacity: 0.9;
+                text-align: justify;
             }
-        
+
         /* TABS */
         .tabs {
             display: flex;
@@ -170,6 +171,7 @@
             margin-bottom: 20px;
             flex-wrap: wrap;
         }
+
         .tab-button {
             padding: 10px 16px;
             border: none;
@@ -182,17 +184,20 @@
             border-bottom: 3px solid transparent;
             transition: all .2s ease;
         }
-        .tab-button.active {
-            opacity: 1;
-            color: var(--navy-1);
-            border-bottom-color: var(--accent-1);
-        }
+
+            .tab-button.active {
+                opacity: 1;
+                color: var(--navy-1);
+                border-bottom-color: var(--accent-1);
+            }
+
         .tab-pane {
             display: none;
         }
-        .tab-pane.active {
-            display: block;
-        }
+
+            .tab-pane.active {
+                display: block;
+            }
 
         /* timeline & cards */
         .section {
@@ -349,10 +354,11 @@
             cursor: pointer;
             transition: transform .16s, box-shadow .16s;
         }
-        .submit:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(0, 80, 157, 0.2);
-        }
+
+            .submit:hover {
+                transform: translateY(-3px);
+                box-shadow: 0 8px 20px rgba(0, 80, 157, 0.2);
+            }
 
         .page-footer {
             grid-column: 1 / -1;
@@ -364,7 +370,10 @@
 
         /* responsive */
         @media (max-width:980px) {
-            body { padding: 16px; }
+            body {
+                padding: 16px;
+            }
+
             .wrap {
                 grid-template-columns: 1fr;
                 gap: 20px;
@@ -382,11 +391,13 @@
                 gap: 12px;
             }
         }
+
         @media (max-width: 600px) {
             .form-grid {
                 grid-template-columns: 1fr;
             }
-             .skills-grid {
+
+            .skills-grid {
                 grid-template-columns: 1fr;
             }
         }
@@ -409,6 +420,7 @@
             transform: translateY(10px);
             animation: fadeIn .5s forwards;
         }
+
         .fade-up {
             opacity: 0;
             transform: translateY(8px);
@@ -421,6 +433,7 @@
                 transform: none
             }
         }
+
         @keyframes fadeUp {
             to {
                 opacity: 1;
@@ -432,7 +445,7 @@
     <!-- Chart.js CDN -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
     <!-- EmailJS SDK -->
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/emailjs-com@3.2.0/dist/email.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 </head>
 <body>
     <div class="wrap">
@@ -449,12 +462,12 @@
 
             <div class="contact-list">
                 <a href="https://wa.me/970599999404" target="_blank" rel="noopener">WhatsApp • +970 59 999 9404</a>
-                
+
                 <a href="https://linkedin.com/in/obadasalman" target="_blank" rel="noopener">LinkedIn • obadasalman</a>
             </div>
-
+            <!--
             <div class="muted" style="margin-top:14px;">Quick Advice</div>
-            <div class="muted-sm">Be yourself</div>
+            <div class="muted-sm">Be yourself</div>-->
             <div style="margin-top:10px;">
                 <div class="chips">
                     <div class="chip">Open to work</div>
@@ -467,7 +480,7 @@
         <!-- MAIN -->
         <main class="main fade-up" style="animation-delay:.12s">
             <div class="top">
-                <div class="summary">
+                <div class="summary" >
                     <h1>Professional summary</h1>
                     <p>
                         Mechatronics engineer with hands-on experience in production & maintenance engineering, CNC operation,
@@ -475,7 +488,7 @@
                         Experienced in industrial environments with proven ability to learn, communicate, and lead technical tasks.
                     </p>
                 </div>
-                <div style="width:260px; text-align:right;">
+                <div style="width:260px; text-align:center;">
                     <div style="background:linear-gradient(180deg,var(--navy-2),var(--navy-3)); color:white; padding:12px; border-radius:12px;">
                         <div style="font-weight:700">Available</div>
                         <div class="muted-sm">Open to new opportunities</div>
@@ -553,7 +566,7 @@
                             </div>
                         </div>
                     </section>
-                     <!-- Training & Certifications -->
+                    <!-- Training & Certifications -->
                     <section class="section">
                         <h3>Training & certifications</h3>
                         <div class="card">
@@ -568,7 +581,7 @@
 
                 <!-- Skills Tab -->
                 <div id="skills" class="tab-pane fade-in">
-                     <!-- Skills -->
+                    <!-- Skills -->
                     <section class="section" style="margin-top:0;">
                         <h3>Skills Analysis</h3>
                         <div class="card" style="display:flex; gap:16px; flex-wrap:wrap; align-items:flex-start;">
@@ -610,7 +623,7 @@
                                     <div style="font-weight:700;margin-bottom:8px">Get in touch</div>
                                     <div class="muted-sm">WhatsApp: <a class="link" href="https://wa.me/970599999404" target="_blank">+970 59 999 9404</a></div>
                                     <div class="muted-sm">LinkedIn: <a class="link" href="https://linkedin.com/in/obadasalman" target="_blank">obadasalman</a></div>
-                                    
+
                                 </div>
 
                                 <div style="flex:1;min-width:300px">
@@ -645,118 +658,118 @@
             </div>
         </main>
         <footer class="page-footer">
-             © Obada Salman
+            © Obada Salman
         </footer>
     </div>
 
     <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        // Init EmailJS - replace with your user ID
-        (function(){
-          // NOTE: Replace with your actual EmailJS user ID.
-          emailjs.init('rffPoG4I4xtBGcpOk');
-        })();
+        document.addEventListener('DOMContentLoaded', function () {
+            // Init EmailJS - replace with your user ID
+            (function () {
+                // NOTE: Replace with your actual EmailJS user ID.
+                emailjs.init({ publickey: 'puplic_aWHu910hzjc-xoFbt' });
+            })();
 
-        const tabs = document.querySelectorAll('.tab-button');
-        const panes = document.querySelectorAll('.tab-pane');
-        
-        let skillChart;
-        let chartRendered = false;
+            const tabs = document.querySelectorAll('.tab-button');
+            const panes = document.querySelectorAll('.tab-pane');
 
-        function switchTab(tabEl) {
-            const targetId = tabEl.dataset.tab;
+            let skillChart;
+            let chartRendered = false;
 
-            tabs.forEach(t => t.classList.remove('active'));
-            tabEl.classList.add('active');
+            function switchTab(tabEl) {
+                const targetId = tabEl.dataset.tab;
 
-            panes.forEach(p => p.classList.remove('active'));
-            const targetPane = document.getElementById(targetId);
-            if(targetPane) {
-                targetPane.classList.add('active');
+                tabs.forEach(t => t.classList.remove('active'));
+                tabEl.classList.add('active');
+
+                panes.forEach(p => p.classList.remove('active'));
+                const targetPane = document.getElementById(targetId);
+                if (targetPane) {
+                    targetPane.classList.add('active');
+                }
+
+                // Animate skill bars if the skills tab is active
+                if (targetId === 'skills') {
+                    animateBars();
+                    renderChart();
+                }
             }
-            
-            // Animate skill bars if the skills tab is active
-            if (targetId === 'skills') {
-                animateBars();
-                renderChart();
-            }
-        }
 
-        tabs.forEach(tab => {
-            tab.addEventListener('click', () => switchTab(tab));
-        });
-        
-        // Function to handle the contact button click from sidebar
-        window.showContactTab = function(event) {
-            event.preventDefault();
-            const contactTabButton = document.querySelector('.tab-button[data-tab="contact"]');
-            if (contactTabButton) {
-                switchTab(contactTabButton);
-                // Scroll to the main content area for better visibility on mobile
-                document.querySelector('.main').scrollIntoView({ behavior: 'smooth' });
-            }
-        };
-
-        // Animate skill bars when visible
-        function animateBars(){
-          document.querySelectorAll('.bar-inner').forEach(b=>{
-            const val = b.getAttribute('data-val') || 0;
-            setTimeout(()=> b.style.width = val + '%', 100);
-          });
-        }
-        
-        // Setup Chart.js radar/bar for skills
-        function renderChart() {
-            if(chartRendered) return;
-
-            const ctx = document.getElementById('skillChart').getContext('2d');
-            skillChart = new Chart(ctx, {
-              type: 'bar',
-              data: {
-                labels: ['SolidWorks','CNC','Maintenance','Office Skills'],
-                datasets: [{
-                  label: 'Skill level',
-                  data: [85,78,88,82],
-                  backgroundColor: 'rgba(0, 80, 157, 0.7)',
-                  borderColor: 'rgba(0, 80, 157, 1)',
-                  borderWidth: 1,
-                  borderRadius: 6,
-                  barThickness: 18
-                }]
-              },
-              options: {
-                responsive:true,
-                maintainAspectRatio:false,
-                scales:{
-                  y:{ beginAtZero:true, max:100, ticks:{stepSize:20} }
-                },
-                plugins:{ legend:{ display:false } }
-              }
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => switchTab(tab));
             });
-            chartRendered = true;
-        }
 
-        // Contact form handling (EmailJS)
-        document.getElementById('contactForm').addEventListener('submit', function(e){
-          e.preventDefault();
-          const statusEl = document.getElementById('formStatus');
-          statusEl.textContent = 'Sending...';
+            // Function to handle the contact button click from sidebar
+            window.showContactTab = function (event) {
+                event.preventDefault();
+                const contactTabButton = document.querySelector('.tab-button[data-tab="contact"]');
+                if (contactTabButton) {
+                    switchTab(contactTabButton);
+                    // Scroll to the main content area for better visibility on mobile
+                    document.querySelector('.main').scrollIntoView({ behavior: 'smooth' });
+                }
+            };
 
-          // Replace with your EmailJS service ID & template ID
-          const serviceID = 'service_dl1up6s';
-          const templateID = 'template_xafoadf';
+            // Animate skill bars when visible
+            function animateBars() {
+                document.querySelectorAll('.bar-inner').forEach(b => {
+                    const val = b.getAttribute('data-val') || 0;
+                    setTimeout(() => b.style.width = val + '%', 100);
+                });
+            }
 
-          emailjs.sendForm(serviceID, templateID, this)
-            .then(() => {
-              statusEl.textContent = 'Sent ✓';
-              this.reset();
-              setTimeout(()=> statusEl.textContent = '', 3000);
-            }, (err) => {
-              console.error(err);
-              statusEl.textContent = 'Error — check console';
+            // Setup Chart.js radar/bar for skills
+            function renderChart() {
+                if (chartRendered) return;
+
+                const ctx = document.getElementById('skillChart').getContext('2d');
+                skillChart = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: ['SolidWorks', 'CNC', 'Maintenance', 'Office Skills'],
+                        datasets: [{
+                            label: 'Skill level',
+                            data: [85, 78, 88, 82],
+                            backgroundColor: 'rgba(0, 80, 157, 0.7)',
+                            borderColor: 'rgba(0, 80, 157, 1)',
+                            borderWidth: 1,
+                            borderRadius: 6,
+                            barThickness: 18
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        scales: {
+                            y: { beginAtZero: true, max: 100, ticks: { stepSize: 20 } }
+                        },
+                        plugins: { legend: { display: false } }
+                    }
+                });
+                chartRendered = true;
+            }
+
+            // Contact form handling (EmailJS)
+            document.getElementById('contactForm').addEventListener('submit', function (e) {
+                e.preventDefault();
+                const statusEl = document.getElementById('formStatus');
+                statusEl.textContent = 'Sending...';
+
+                // Replace with your EmailJS service ID & template ID
+                const serviceID = 'service_dl1up6s';
+                const templateID = 'template_xafoadf';
+
+                emailjs.sendForm(serviceID, templateID, this)
+                    .then(() => {
+                        statusEl.textContent = 'Sent ✓';
+                        this.reset();
+                        setTimeout(() => statusEl.textContent = '', 3000);
+                    }, (err) => {
+                        console.error(err);
+                        statusEl.textContent = 'Error — check console';
+                    });
             });
         });
-    });
     </script>
 </body>
 </html>
