@@ -39,7 +39,9 @@
             -moz-osx-font-smoothing: grayscale;
             padding: 32px;
             display: flex;
-            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
         }
 
         .wrap {
@@ -49,6 +51,7 @@
             grid-template-columns: 320px 1fr;
             gap: 28px;
             align-items: start;
+            flex: 1;
         }
 
         /* SIDEBAR */
@@ -426,10 +429,13 @@
 
         .page-footer {
             grid-column: 1 / -1;
-            margin-top: 10px;
+            margin-top: 20px;
+            padding: 20px 0;
             text-align: center;
             color: #5b7a98;
             font-size: 13px;
+            width: 100%;
+            max-width: var(--maxw);
         }
 
         /* responsive */
